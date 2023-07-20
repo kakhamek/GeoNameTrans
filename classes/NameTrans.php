@@ -76,14 +76,13 @@ class NameTrans {
         
         if($this->caps)
         {
-            $arr = array_map('mb_strtoupper', explode(" ", $this->output));
+            return mb_strtoupper($this->output);
         }
         else
         {
             $arr = array_map(array($this,'mb_ucfirst'), explode(" ", $this->output));
+            return implode(" ",$arr);
         }
-        
-        return implode(" ",$arr);
         
     }
 
