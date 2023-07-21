@@ -4,13 +4,13 @@ require_once 'classes/NameTrans.php';
 
 $output1 = new NameTrans('EN','კახაბერ მექვაბიშვილი');
 
-// Print Converted name
-echo $output1->convert();
+// Print translated name
+echo $output1->translate();
 
 $output2 = new NameTrans('RU','კახაბერ მექვაბიშვილი',$caps = true);
 
-// Print Converted name
-echo $output2->convert();
+// Print translated name
+echo $output2->translate();
 
 
 // Print languages
