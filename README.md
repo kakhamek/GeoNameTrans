@@ -3,29 +3,39 @@ PHP and Python Classes for Translate Georgian firstname and lastname into Englis
 
 Usage PHP
 ```
-require_once 'classes/NameTrans.php';
+    require_once 'classes/NameTrans.php';
 
-$output1 = new NameTrans('EN','კახაბერ მექვაბიშვილი');
+    $output1 = new NameTrans('EN','კახაბერ მექვაბიშვილი');
 
-// Print translated name
-echo $output1->translate();
+    // Print translated name
+    echo $output1->translate();
 
-$output2 = new NameTrans('RU','კახაბერ მექვაბიშვილი',$caps = true);
+    $output2 = new NameTrans('RU','კახაბერ მექვაბიშვილი',$caps = true);
 
-// Print translated name
-echo $output2->translate();
+    // Print translated name
+    echo $output2->translate();
 
 
-// Print languages
-print_r($output1->languages());
+    // Print languages
+    print_r($output1->languages());
 ```
 
 
 Usage Python
 ```
-output1 = NameTrans("EN","კახაბერ მექვაბიშვილი")
-print(output1.translate())
+    output1 = NameTrans("EN","კახაბერ მექვაბიშვილი")
+    print(output1.translate())
 
-output2 = NameTrans("RU","კახაბერ მექვაბიშვილი",caps = True)
-print(output2.translate())
+    output2 = NameTrans("RU","კახაბერ მექვაბიშვილი",caps = True)
+    print(output2.translate())
+```
+
+Usage JavaScript
+```
+    const output1 = new NameTrans("EN1", "კახაბერ მექვაბიშვილი");
+    console.log(output1.translate());
+
+    const output2 = new NameTrans("RU", "კახაბერ მექვაბიშვილი", true);
+    console.log(output2.translate());
+
 ```
