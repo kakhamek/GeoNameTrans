@@ -3,7 +3,7 @@ PHP/Python/JavaScript Classes for Translate Georgian firstname and lastname into
 
 Usage PHP
 ```
-    require_once 'classes/NameTrans.php';
+require_once 'classes/NameTrans.php';
 
     $output1 = new NameTrans('EN','კახაბერ მექვაბიშვილი');
 
@@ -23,8 +23,8 @@ Usage PHP
 
 Usage Python
 ```
-    output1 = NameTrans("EN","კახაბერ მექვაბიშვილი")
-    print(output1.translate())
+output1 = NameTrans("EN","კახაბერ მექვაბიშვილი")
+print(output1.translate())
 
     output2 = NameTrans("RU","კახაბერ მექვაბიშვილი",caps = True)
     print(output2.translate())
