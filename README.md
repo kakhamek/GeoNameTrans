@@ -1,5 +1,5 @@
 # GeoNameTrans
-PHP and Python Classes for Translate Georgian firstname and lastname into English, Russian
+PHP/Python/JavaScript Classes for Translate Georgian firstname and lastname into English, Russian
 
 Usage PHP
 ```
