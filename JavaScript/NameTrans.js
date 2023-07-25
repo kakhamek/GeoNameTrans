@@ -34,22 +34,18 @@ class NameTrans {
 
     }
 
-    // check language
-    checkLanguage() 
-    {
-        if(this.LANGUAGES.includes(this.lang)) 
-        {
-            
-            return true;
-        }
-
-        return false;
-    }
 
     // translate
     translate() {
 
-        if(this.checkLanguage())
+        // check language
+        if(!this.LANGUAGES.includes(this.lang))
+        {
+            // Return error
+            console.error(`Error: Language "${this.lang}" not found, available languages are: ${this.LANGUAGES}`);
+
+        }
+        else
         {
             let output = "";
 
@@ -69,8 +65,6 @@ class NameTrans {
             return output.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         }
 
-        // Return error
-        return `Error: Language "${this.lang}" not found, available languages are: ${this.LANGUAGES}`;
     }
 
 }
