@@ -1,6 +1,11 @@
 # GeoNameTrans
-PHP/Python/JavaScript Classes for Translate Georgian firstname and lastname into English, Russian
+PHP/Python/JavaScript Classes for Translating Georgian First Names and Last Names into English and Russian.
 
+### Available languages:
+1. EN (English)
+2. RU (Russian)
+
+---
 Usage PHP
 ```php
 require_once 'classes/NameTrans.php';
@@ -23,8 +28,8 @@ require_once 'classes/NameTrans.php';
 
 Usage Python
 ```python
-output1 = NameTrans("EN","კახაბერ მექვაბიშვილი")
-print(output1.translate())
+    output1 = NameTrans("EN","კახაბერ მექვაბიშვილი")
+    print(output1.translate())
 
     output2 = NameTrans("RU","კახაბერ მექვაბიშვილი",caps = True)
     print(output2.translate())

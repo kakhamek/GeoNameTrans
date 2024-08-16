@@ -13,34 +13,65 @@ Description: Translate Georgian firstname and lastname into English, Russian ...
 Author: K. Mekvabishvili
 Date: 2019
 
--------------------------------------------------
-Available languages:
-1. EN 
-2. RU
-
 */
 
 
 class NameTrans {
 
 
-    // Languages
+    /**
+     * Supported languages for translation.
+     */
     const LANGUAGES = ['EN','RU'];
 
 
-    // Symbols
+    /**
+     * Mapping of Georgian characters to corresponding English and Russian characters.
+     */
     const SOURCE = array(
         'KA' => [' ','ქ','ჭ','წ','ე','რ','ღ','ტ','თ','ყ','უ','ი','ო','პ','ა','ს','შ','დ','ფ','გ','ჰ','ჯ','ჟ','კ','ლ','ზ','ძ','ხ','ც','ჩ','ვ','ბ','ნ','მ'],
         'EN' => [' ','k','ts','ts','e','r','gh','t','t','k','u','i','o','p','a','s','sh','d','f','g','h','j','zh','k','l','z','dz','kh','c','ch','v','b','n','m'],
         'RU' => [' ','к','ч','ц','е','р','г','т','т','к','у','и','о','п','а','с','ш','д','ф','г','х','дж','ж','к','л','з','дз','х','ц','ч','в','б','н','м'],
     );
 
+    /**
+     * Language for translation.
+     * 
+     * @var string
+     */
     private $lang;
+
+    /**
+     * The full name to be translated.
+     * 
+     * @var string
+     */
     private $fullname;
-    private $caps;
+
+    /**
+     * Stores the translated output.
+     * 
+     * @var string
+     */
     private $output;
 
+    /**
+     * Indicates whether the output should be in all caps.
+     * 
+     * @var bool
+     */
+    private $caps;
 
+
+    /**
+     * Class constructor.
+     * 
+     * Initializes the language, full name, and capitalization option.
+     * 
+     * @param string $lang      The target language for translation (EN, RU).
+     * @param string $fullname  The full name to be translated.
+     * @param bool   $caps      Whether to convert the translated name to uppercase.
+     */
     public function __construct(string $lang, string $fullname, bool $caps = false) 
     {
 
@@ -48,54 +79,53 @@ class NameTrans {
         $this->caps = $caps;
         $this->fullname = $fullname;
        
-        // check language and die if not found
-        $this->checkLanguage();
+        // Validate the selected language.
+        $this->validateLanguage();
 
     }
 
-    //
-    // Translate 
-    //
-
+    /**
+     * Translates the full name from Georgian to the specified language.
+     * 
+     * @return string The translated name.
+     */
     public function translate()
     {
 
         for($i = 0; $i < mb_strlen($this->fullname); $i++)
         {
-            // Get char
+            // Get the current character from the name.
             $symbol = mb_substr($this->fullname,$i,1);
 
             // Find the index of the current char
             $index = array_search($symbol,self::SOURCE['KA']);
 
-            // Append char 
+            // Append the translated character to the output.
             $this->output .= self::SOURCE[$this->lang][$index];
             
         }
         
-        // Make all caps and return string
+        // Return the output in uppercase if the caps option is set.
         if($this->caps)
         {
             return mb_strtoupper($this->output);
         }
         
-        // Split words into an array
+        // Capitalize the first letter of each word and return the result.
         $words = explode(" ", $this->output);
-
-        // Capitalize words
         $capitalized = array_map(array($this, 'mb_ucfirst'), $words);
-
-        // merge capitalized words and return string
         return implode(" ", $capitalized);
         
         
     }
 
-    //
-    // Check language
-    //
-
-    private function checkLanguage()
+    /**
+     * Validates the selected language against the supported languages.
+     * 
+     * @return void
+     * @throws Exception if the language is not supported.
+     */
+    private function validateLanguage()
     {
 
         if(!in_array($this->lang, self::LANGUAGES)) 
@@ -105,10 +135,11 @@ class NameTrans {
 
     }
 
-    //
-    // Get List of all available languages (Array)
-    //
-
+    /**
+     * Returns the list of supported languages.
+     * 
+     * @return array The supported languages.
+     */
     public function languages()
     {
 
@@ -117,11 +148,14 @@ class NameTrans {
     }
 
 
-    //
-    // uc_first() analogue function for utf-8
-    // source: https://stackoverflow.com/questions/2517947/ucfirst-function-for-multibyte-character-encodings
-    //
-
+    /**
+     * UTF-8 safe ucfirst() alternative for capitalizing the first letter of a string.
+     * source: https://stackoverflow.com/questions/2517947/ucfirst-function-for-multibyte-character-encodings
+     * 
+     * @param string $string   The input string.
+     * @param string $encoding The character encoding (default is UTF-8).
+     * @return string The string with the first letter capitalized.
+     */
     private static function mb_ucfirst($string, $encoding = 'UTF-8'){
 
         $strlen = mb_strlen($string, $encoding);
